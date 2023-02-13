@@ -33,25 +33,16 @@ jobs:
 
 
       - run:
-          name: Jekyll build
-          command: bundle exec jekyll build -d html 2> std.err
-
-      - run:
-          name: Check Jekyll build
-          command: |
-            cat std.err
-            exit $(wc -l std.err | awk '{print $1}')
-
-
-      - run:
-          name: Jekyll re-build for local
+          name: Jekyll build for local
           command: |
             echo "url: https://output.circle-artifacts.com" > circle.yml
-            bundle exec jekyll build -d html -b "/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html"  --config _config.yml,circle.yml
+            bundle exec jekyll build -d html -b "/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html"  --config _config.yml,circle.yml  2> std.err
             find ./html/ -type f -iname '*html' | xargs -I{} sed -i \
               -e 's|href="\(\.\/.*\/\)"|href="\1index.html"|g' \
               -e '/0\/html/ s|href="\(\/.*\/\)"|href="\1index.html"|g' {}
-            # Replace pages ending on `/` from our site to direct to index.html
+            cat std.err
+            wc -l std.err | awk '{print $1}'
+
 
       - run:
           name: "Built documentation is available at:"
