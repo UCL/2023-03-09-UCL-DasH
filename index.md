@@ -95,12 +95,24 @@ displayed if the 'eventbrite' field in the header is not set.
 <strong>Some adblockers block the registration window. If you do not see the
   registration box below, please check your adblocker settings.</strong>
 <iframe
-  src="https://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt"
+  src="https://www.eventbrite.co.uk/e/ucl-dash-workshop-in-python-health-care-data-analysis-and-medical-imaging-tickets-539618031057"
   frameborder="0"
   width="100%"
   height="280px"
   scrolling="auto">
 </iframe>
+{% endif %}
+
+
+{% if page.onlinestore %}
+<p class="text-center">
+  <a href="https://onlinestore.ucl.ac.uk/product-catalogue/{{page.onlinestore}}">
+    <button type="button" class="btn btn-info">Register </button>
+  </a>
+</p>
+<p class="text-center">
+  <b>Note: There is no registration fees. Please bring your own refreshments and snacks. </b>
+</p>
 {% endif %}
 
 
