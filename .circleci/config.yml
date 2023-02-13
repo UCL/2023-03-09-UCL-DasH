@@ -26,7 +26,11 @@ jobs:
 
       - run:
           name: install dependencies
-          command: bundle check || bundle install --jobs=4 --retry=3
+          command: |
+            gem install github-pages bundler kramdown kramdown-parser-gfm
+            bundle config set --local path ~/vendor/bundle
+            bundle check || bundle install --jobs=4 --retry=3
+
 
       - run:
           name: Jekyll build
