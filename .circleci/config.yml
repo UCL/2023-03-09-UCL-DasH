@@ -27,7 +27,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            gem install github-pages bundler kramdown kramdown-parser-gfm
+            gem install github-pages bundler kramdown kramdown-parser-gfm faraday-retry
             bundle config set --local path ~/vendor/bundle
             bundle check || bundle install --jobs=4 --retry=3
 
