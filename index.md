@@ -103,19 +103,6 @@ displayed if the 'eventbrite' field in the header is not set.
 </iframe>
 {% endif %}
 
-
-{% if page.onlinestore %}
-<p class="text-center">
-  <a href="https://onlinestore.ucl.ac.uk/product-catalogue/{{page.onlinestore}}">
-    <button type="button" class="btn btn-info">Register </button>
-  </a>
-</p>
-<p class="text-center">
-  <b>Note: There is no registration fees. Please bring your own refreshments and snacks. </b>
-</p>
-{% endif %}
-
-
 <h2 id="general">General Information</h2>
 
 {% comment %}
@@ -134,6 +121,7 @@ the pitch.
 
 {% if site.pilot %}
 This is a pilot workshop, testing out a lesson that is still under development. The lesson authors would appreciate any feedback you can give them about the lesson content and suggestions for how it could be further improved.
+  <b>Note: There is no registration fees. Please bring your own refreshments and snacks. </b>
 {% endif %}
 
 {% comment %}
