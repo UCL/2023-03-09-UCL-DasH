@@ -94,6 +94,8 @@ the pitch.
 {% include dc/intro.html %}
 {% elsif site.carpentry == "lc" %}
 {% include lc/intro.html %}
+{% elsif site.carpentry == "DaSH" %}
+{% include dash/intro.html %}
 {% endif %}
 
 {% if site.pilot %}
@@ -404,6 +406,8 @@ please preview your site before committing, and make sure to run
   Data Carpentry
   {% elsif site.carpentry == "lc" %}
   Library Carpentry
+  {% elsif site.carpentry == "DaSH" %}
+  UCL DaSH
   {% endif %}
   workshop,
   you will need access to software as described below.
