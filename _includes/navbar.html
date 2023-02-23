@@ -39,8 +39,11 @@
       <a href="{{ relative_root_path }}{% link index.md %}" class="pull-left">
         <img class="navbar-logo" src="{{ relative_root_path }}{% link /assets/img/carpentrieslab.svg %}" alt="The Carpentries Lab" />
       </a>
+      {% elsif site.carpentry == "DaSH" %}
+      <a href="{{ relative_root_path }}{% link index.md %}" class="pull-left">
+          <img class="navbar-logo" src="{{ relative_root_path }}{% link /assets/img/ideas-l2d.svg %}" alt="The Carpentries Lab" />
+      </a>
       {% endif %}
-
       {% comment %} Always show link to home page. {% endcomment %}
       <a class="navbar-brand" href="{{ relative_root_path }}{% link index.md %}">Home</a>
 

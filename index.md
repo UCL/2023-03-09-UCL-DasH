@@ -16,8 +16,8 @@ enddate: 2023-03-14         # machine-readable end date for the workshop in YYYY
 instructor: ["David Pérez-Suárez","Mary Tziraki", "Thomas Veale", "Gerold Baier", "Saba Ferdous", "Adam Lee"] # boxed, comma-separated list of instructors' names as strings, like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
 helper: ["TBC"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
 email: ["arc-teaching+carpentries@ucl.ac.uk","m.tziraki@ucl.ac.uk"]    # boxed, comma-separated list of contact email addresses for the host, lead instructor, or whoever else is handling questions, like ["marlyn.wescoff@example.org", "fran.bilas@example.org", "ruth.lichterman@example.org"]
-collaborative_notes:   # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document (e.g., https://pad.carpentries.org/2015-01-01-euphoria)
-eventbrite:           # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
+collaborative_notes: https://codimd.carpentries.org/2023-03-09-UCL-DaSH  # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document (e.g., https://pad.carpentries.org/2015-01-01-euphoria)
+eventbrite:  539618031057     # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
 onlinestore: "faculty-of-life-sciences-c08/division-of-biosciences-d09/d09-dash-software-carpentry-workshop" # OnlineStore URL
 ---
 
@@ -72,7 +72,7 @@ displayed if the 'eventbrite' field in the header is not set.
 <strong>Some adblockers block the registration window. If you do not see the
   registration box below, please check your adblocker settings.</strong>
 <iframe
-  src="https://www.eventbrite.co.uk/e/ucl-dash-workshop-in-python-health-care-data-analysis-and-medical-imaging-tickets-539618031057"
+  src="https://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt"
   frameborder="0"
   width="100%"
   height="280px"
@@ -94,6 +94,8 @@ the pitch.
 {% include dc/intro.html %}
 {% elsif site.carpentry == "lc" %}
 {% include lc/intro.html %}
+{% elsif site.carpentry == "DaSH" %}
+{% include dash/intro.html %}
 {% endif %}
 
 {% if site.pilot %}
@@ -404,6 +406,8 @@ please preview your site before committing, and make sure to run
   Data Carpentry
   {% elsif site.carpentry == "lc" %}
   Library Carpentry
+  {% elsif site.carpentry == "DaSH" %}
+  UCL DaSH
   {% endif %}
   workshop,
   you will need access to software as described below.
