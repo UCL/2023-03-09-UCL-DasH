@@ -61,10 +61,13 @@ except ImportError:  # Python 2.6 and earlier
 import logging as _logging
 import os as _os
 import platform as _platform
+import distro as _dist
 import re as _re
 import shlex as _shlex
 import subprocess as _subprocess
 import sys as _sys
+  
+
 try:  # Python 3.x
     import urllib.parse as _urllib_parse
 except ImportError:  # Python 2.x
@@ -90,19 +93,19 @@ CHECKS = [
     'virtual-browser',
 # Version control
     'git',
-    'hg',              # Command line tool
+    #'hg',              # Command line tool
     #'mercurial',       # Python package
-    'EasyMercurial',
+    #'EasyMercurial',
 # Build tools and packaging
     'make',
     'virtual-pypi-installer',
     'setuptools',
     #'xcode',
 # Testing
-    'nosetests',       # Command line tool
-    'nose',            # Python package
-    'py.test',         # Command line tool
-    'pytest',          # Python package
+    #'nosetests',       # Command line tool
+    #'nose',            # Python package
+    #'py.test',         # Command line tool
+    #'pytest',          # Python package
 # SQL
     'sqlite3',         # Command line tool
     'sqlite3-python',  # Python package
@@ -114,7 +117,14 @@ CHECKS = [
     'numpy',
     'scipy',
     'matplotlib',
+    'nibabel',
+    'nilearn',
+    'cv2',
     'pandas',
+    'PIL',
+    'seaborn',
+    'skimage',
+    'tensorflow',
     #'sympy',
     #'Cython',
     #'networkx',
@@ -215,15 +225,23 @@ class DependencyError (Exception):
     def get_url(self):
         system = _platform.system()
         version = None
-        for pversion in (
-            'linux_distribution',
-            'mac_ver',
-            'win32_ver',
-            ):
-            value = getattr(_platform, pversion)()
-            if value[0]:
-                version = value[0]
-                break
+        # This is less compact than the original setting, but easier to read
+        # And I don't know why we need to check the linux distribution if
+        # we already established that the system is linux
+        if system == "Linux":
+            dist_info = _dist.linux_distribution()
+            if dist_info[0]:
+                version = dist_info[0]
+        elif system == "Darwin":
+            dist_info = _platform.mac_ver()
+            if dist_info[0]:
+                version = dist_info[0]
+        elif system == "Windows":
+            dist_info = _platform.win32_ver()
+            if dist_info[0]:
+                version = dist_info[0]
+        else:
+            print(f"Unknown platform {system}")  
         package = self.checker.name
         for (s,v,p),url in self._setup_urls.items():
             if (_fnmatch.fnmatch(system, s) and
@@ -886,6 +904,13 @@ for package,name,long_name,minimum_version,and_dependencies in [
         ('scipy', None, 'SciPy', None, None),
         ('matplotlib', None, 'Matplotlib', None, None),
         ('pandas', None, 'Pandas', (0, 8), None),
+        ('nibabel', None, 'Nibabel', None, None),
+        ('nilearn', None, 'Nilearn', None, None),
+        ('cv2', None, 'Open CV', None, None),
+        ('PIL',None, 'Pillow', None, None),
+        ('seaborn', None, 'Seaborn', None, None),
+        ('skimage', None, 'scikit-image', None, None),
+        ('tensorflow', None, 'Tensorflow', None, None),
         ('sympy', None, 'SymPy', None, None),
         ('Cython', None, None, None, None),
         ('networkx', None, 'NetworkX', None, None),
@@ -982,14 +1007,21 @@ def print_system_info():
     _print_info('os.uname', _platform.uname())
     _print_info('platform', _sys.platform)
     _print_info('platform+', _platform.platform())
-    for pversion in (
-            'linux_distribution',
-            'mac_ver',
-            'win32_ver',
-            ):
-        value = getattr(_platform, pversion)()
-        if value[0]:
-            _print_info(pversion, value)
+    system = _platform.system()
+    if system == "Linux":
+        dist_info = _dist.linux_distribution()
+        if dist_info[0]:
+            _print_info('linux_distribution',dist_info[0])
+    elif system == "Darwin":
+        dist_info = _platform.mac_ver()
+        if dist_info[0]:
+            _print_info('mac_ver',dist_info[0])
+    elif system == "Windows":
+        dist_info = _platform.win32_ver()
+        if dist_info[0]:
+            _print_info('win_ver',dist_info[0])
+    else:
+        print(f"Unknown platform {system}")  
     _print_info('prefix', _sys.prefix)
     _print_info('exec_prefix', _sys.exec_prefix)
     _print_info('executable', _sys.executable)
