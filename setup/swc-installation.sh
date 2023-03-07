@@ -41,6 +41,6 @@ fi
 echo "Adding DCM2NIIX"
 conda install -y -c conda-forge dcm2niix
 echo "Adding enviroment to Jupyter..."
-conda install -y -c anaconda ipykernel
+conda install -y -c anaconda ipykernel 
 python -m ipykernel install --user --name=${env_name}
 echo "Complete!"

@@ -97,7 +97,7 @@ CHECKS = [
     #'mercurial',       # Python package
     #'EasyMercurial',
 # Build tools and packaging
-    'make',
+    #'make',
     'virtual-pypi-installer',
     'setuptools',
     #'xcode',
@@ -113,6 +113,7 @@ CHECKS = [
     'python',
     'ipython',         # Command line tool
     'jupyter',         # Former IPython features, notebook, etc.
+    'jupyterlab',
     'argparse',        # Useful for utility scripts
     'numpy',
     'scipy',
@@ -171,6 +172,7 @@ class DependencyError (Exception):
         ('*', '*', 'hg'): 'http://mercurial.selenic.com/',
         ('*', '*', 'mercurial'): 'http://mercurial.selenic.com/',
         ('*', '*', 'jupyter'): 'http://jupyter.org/install.html',
+        ('*', '*', 'jupyterlab'): 'https://jupyter.org/install',
         ('*', '*', 'ipython'): 'http://ipython.org/install.html',
         ('*', '*', 'jinja'): 'http://jinja.pocoo.org/docs/intro/#installation',
         ('*', '*', 'kate'): 'http://kate-editor.org/get-it/',
@@ -899,6 +901,7 @@ for package,name,long_name,minimum_version,and_dependencies in [
                          minimum_version=(5, 0)),
                  ]),
          ]),
+        ('jupyterlab',None, 'Jupyter Lab', None, None),
         ('argparse', None, 'Argparse', None, None),
         ('numpy', None, 'NumPy', None, None),
         ('scipy', None, 'SciPy', None, None),
