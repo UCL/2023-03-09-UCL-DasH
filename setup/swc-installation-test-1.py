@@ -39,7 +39,7 @@ __version__ = '0.2'
 
 
 def check():
-    if _sys.version_info < (3, 3):
+    if _sys.version_info < (3, 9):
         print('check for Python version (python):')
         print('outdated version of Python: ' + _sys.version)
         return False
@@ -52,6 +52,6 @@ if __name__ == '__main__':
         print('version of Python: ' + _sys.version)
     else:
         print('Failed')
-        print('Install a current version of Python 3!')
+        print('This version of the workshop requires Python 3.9!')
         print('http://continuum.io/downloads')
         _sys.exit(1)
