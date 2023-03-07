@@ -4,22 +4,36 @@ title: Testing Setup
 root: ..
 ---
 
-This directory contains scripts for testing your machine to make sure
+This directory contains scripts for installing the 
+environment needed for the course and testing your machine to make sure
 you have the software you'll need for your workshop installed.  To use
 these scripts:
 
-1.  Download [swc-installation-test-1.py](swc-installation-test-1.py).
+1.  Download [swc-installation.sh](swc-installation.sh).
 
-2.  Run it from the shell:
+2.  Find the directory where you downloaded the installation script and run the command from the shell.
+    ~~~
+    $ ./swc-installation.sh
+    ~~~ 
+
+3.  This will create an environment named 'python_course'. Please 
+activate that environment with the following command:
+   ~~~
+   $ conda activate python_course
+   ~~~
+
+4.  Download [swc-installation-test-1.py](swc-installation-test-1.py).
+
+5.  Run it from the shell:
 
     ~~~
     $ python swc-installation-test-1.py
     Passed
     ~~~
 
-3.  Download [swc-installation-test-2.py](swc-installation-test-2.py).
+6.  Download [swc-installation-test-2.py](swc-installation-test-2.py).
 
-4.  Run it from the shell:
+7.  Run it from the shell:
 
     ~~~
     $ python swc-installation-test-2.py

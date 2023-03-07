@@ -412,9 +412,10 @@ please preview your site before committing, and make sure to run
   UCL DaSH
   {% endif %}
   workshop,
-  you will need access to software as described below.
+  you will need access to software as described on the [setup page](setup/index.md).
   In addition, you will need an up-to-date web browser.
 </p>
+
 <p>
   We maintain a list of common issues that occur during installation as a reference for instructors
   that may be useful on the
