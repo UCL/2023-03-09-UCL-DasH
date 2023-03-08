@@ -86,13 +86,13 @@ __version__ = '0.1'
 # Comment out any entries you don't need
 CHECKS = [
 # Shell
-    'virtual-shell',
+    # 'virtual-shell',
 # Editors
-    'virtual-editor',
+    # 'virtual-editor',
 # Browsers
     'virtual-browser',
 # Version control
-    'git',
+    # 'git',
     #'hg',              # Command line tool
     #'mercurial',       # Python package
     #'EasyMercurial',
