@@ -412,7 +412,7 @@ please preview your site before committing, and make sure to run
   UCL DaSH
   {% endif %}
   workshop,
-  you will need access to software as described on the <a href="{% link setup/index.md %}">setup page</a>.
+  you will need access to software as described on the <a href="{{ site.baseurl }}{% link setup/index.md %}">setup page</a>.
   In addition, you will need an up-to-date web browser.
 </p>
 
