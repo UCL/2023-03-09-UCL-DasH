@@ -450,4 +450,6 @@ during the workshop.
 Please check the "Setup" page of
 [the lesson site]({{ site.incubator_lesson_site }}) for instructions to follow
 to obtain the software and data you will need to follow the lesson.
+{% elsif site.carpentry == "DaSH" %}
+{% include dash/setup.html %}
 {% endif %}
