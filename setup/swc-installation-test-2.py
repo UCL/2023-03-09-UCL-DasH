@@ -225,25 +225,7 @@ class DependencyError (Exception):
         self.causes = causes
 
     def get_url(self):
-        system = _platform.system()
-        version = None
-        # This is less compact than the original setting, but easier to read
-        # And I don't know why we need to check the linux distribution if
-        # we already established that the system is linux
-        if system == "Linux":
-            dist_info = _dist.linux_distribution()
-            if dist_info[0]:
-                version = dist_info[0]
-        elif system == "Darwin":
-            dist_info = _platform.mac_ver()
-            if dist_info[0]:
-                version = dist_info[0]
-        elif system == "Windows":
-            dist_info = _platform.win32_ver()
-            if dist_info[0]:
-                version = dist_info[0]
-        else:
-            print(f"Unknown platform {system}")  
+        system, version = get_system_version()
         package = self.checker.name
         for (s,v,p),url in self._setup_urls.items():
             if (_fnmatch.fnmatch(system, s) and
@@ -998,6 +980,22 @@ del name, long_name, dependencies  # cleanup namespace
 def _print_info(key, value, indent=19):
     print('{0}{1}: {2}'.format(key, ' '*(indent-len(key)), value))
 
+def get_system_version(show=False):
+        system = _platform.system()
+        version = None
+        flavour = {"Linux": {'command': _dist.linux_distribution, 'text': 'linux_distribution'},
+                   "Darwin": {'command': _platform.mac_ver, 'text': 'mac_ver'},
+                   "Windows": {'command': _platform.win32_ver, 'text': 'win_ver'},
+                   }
+        distribution = flavour.get(system)
+        if distribution:
+            version = distribution['command']()[0]
+            if show:
+                _print_info(distribution['text'], version)
+        else:
+            print(f"Unknown platform {system}")
+        return system, version
+
 def print_system_info():
     print("If you do not understand why the above failures occurred,")
     print("copy and send the *entire* output (all info above and summary")
@@ -1010,21 +1008,7 @@ def print_system_info():
     _print_info('os.uname', _platform.uname())
     _print_info('platform', _sys.platform)
     _print_info('platform+', _platform.platform())
-    system = _platform.system()
-    if system == "Linux":
-        dist_info = _dist.linux_distribution()
-        if dist_info[0]:
-            _print_info('linux_distribution',dist_info[0])
-    elif system == "Darwin":
-        dist_info = _platform.mac_ver()
-        if dist_info[0]:
-            _print_info('mac_ver',dist_info[0])
-    elif system == "Windows":
-        dist_info = _platform.win32_ver()
-        if dist_info[0]:
-            _print_info('win_ver',dist_info[0])
-    else:
-        print(f"Unknown platform {system}")  
+    get_system_version(show=True)
     _print_info('prefix', _sys.prefix)
     _print_info('exec_prefix', _sys.exec_prefix)
     _print_info('executable', _sys.executable)
