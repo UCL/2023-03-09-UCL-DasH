@@ -13,7 +13,7 @@ these scripts:
 
 2.  Find the directory where you downloaded the installation script and run the command from the shell.
     ~~~
-    $ ./swc-installation.sh
+    $ bash swc-installation.sh
     ~~~ 
 
 3.  This will create an environment named 'python_course'. Please 
