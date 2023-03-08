@@ -61,10 +61,13 @@ except ImportError:  # Python 2.6 and earlier
 import logging as _logging
 import os as _os
 import platform as _platform
+import distro as _dist
 import re as _re
 import shlex as _shlex
 import subprocess as _subprocess
 import sys as _sys
+  
+
 try:  # Python 3.x
     import urllib.parse as _urllib_parse
 except ImportError:  # Python 2.x
@@ -83,26 +86,26 @@ __version__ = '0.1'
 # Comment out any entries you don't need
 CHECKS = [
 # Shell
-    'virtual-shell',
+    # 'virtual-shell',
 # Editors
-    'virtual-editor',
+    # 'virtual-editor',
 # Browsers
     'virtual-browser',
 # Version control
-    'git',
-    'hg',              # Command line tool
+    # 'git',
+    #'hg',              # Command line tool
     #'mercurial',       # Python package
-    'EasyMercurial',
+    #'EasyMercurial',
 # Build tools and packaging
-    'make',
+    #'make',
     'virtual-pypi-installer',
     'setuptools',
     #'xcode',
 # Testing
-    'nosetests',       # Command line tool
-    'nose',            # Python package
-    'py.test',         # Command line tool
-    'pytest',          # Python package
+    #'nosetests',       # Command line tool
+    #'nose',            # Python package
+    #'py.test',         # Command line tool
+    #'pytest',          # Python package
 # SQL
     'sqlite3',         # Command line tool
     'sqlite3-python',  # Python package
@@ -110,11 +113,19 @@ CHECKS = [
     'python',
     'ipython',         # Command line tool
     'jupyter',         # Former IPython features, notebook, etc.
+    'jupyterlab',
     'argparse',        # Useful for utility scripts
     'numpy',
     'scipy',
     'matplotlib',
+    'nibabel',
+    'nilearn',
+    'cv2',
     'pandas',
+    'PIL',
+    'seaborn',
+    'skimage',
+    'tensorflow',
     #'sympy',
     #'Cython',
     #'networkx',
@@ -161,6 +172,7 @@ class DependencyError (Exception):
         ('*', '*', 'hg'): 'http://mercurial.selenic.com/',
         ('*', '*', 'mercurial'): 'http://mercurial.selenic.com/',
         ('*', '*', 'jupyter'): 'http://jupyter.org/install.html',
+        ('*', '*', 'jupyterlab'): 'https://jupyter.org/install',
         ('*', '*', 'ipython'): 'http://ipython.org/install.html',
         ('*', '*', 'jinja'): 'http://jinja.pocoo.org/docs/intro/#installation',
         ('*', '*', 'kate'): 'http://kate-editor.org/get-it/',
@@ -213,17 +225,7 @@ class DependencyError (Exception):
         self.causes = causes
 
     def get_url(self):
-        system = _platform.system()
-        version = None
-        for pversion in (
-            'linux_distribution',
-            'mac_ver',
-            'win32_ver',
-            ):
-            value = getattr(_platform, pversion)()
-            if value[0]:
-                version = value[0]
-                break
+        system, version = get_system_version()
         package = self.checker.name
         for (s,v,p),url in self._setup_urls.items():
             if (_fnmatch.fnmatch(system, s) and
@@ -881,11 +883,19 @@ for package,name,long_name,minimum_version,and_dependencies in [
                          minimum_version=(5, 0)),
                  ]),
          ]),
+        ('jupyterlab',None, 'Jupyter Lab', None, None),
         ('argparse', None, 'Argparse', None, None),
         ('numpy', None, 'NumPy', None, None),
         ('scipy', None, 'SciPy', None, None),
         ('matplotlib', None, 'Matplotlib', None, None),
         ('pandas', None, 'Pandas', (0, 8), None),
+        ('nibabel', None, 'Nibabel', None, None),
+        ('nilearn', None, 'Nilearn', None, None),
+        ('cv2', None, 'Open CV', None, None),
+        ('PIL',None, 'Pillow', None, None),
+        ('seaborn', None, 'Seaborn', None, None),
+        ('skimage', None, 'scikit-image', None, None),
+        ('tensorflow', None, 'Tensorflow', None, None),
         ('sympy', None, 'SymPy', None, None),
         ('Cython', None, None, None, None),
         ('networkx', None, 'NetworkX', None, None),
@@ -970,6 +980,22 @@ del name, long_name, dependencies  # cleanup namespace
 def _print_info(key, value, indent=19):
     print('{0}{1}: {2}'.format(key, ' '*(indent-len(key)), value))
 
+def get_system_version(show=False):
+        system = _platform.system()
+        version = None
+        flavour = {"Linux": {'command': _dist.linux_distribution, 'text': 'linux_distribution'},
+                   "Darwin": {'command': _platform.mac_ver, 'text': 'mac_ver'},
+                   "Windows": {'command': _platform.win32_ver, 'text': 'win_ver'},
+                   }
+        distribution = flavour.get(system)
+        if distribution:
+            version = distribution['command']()[0]
+            if show:
+                _print_info(distribution['text'], version)
+        else:
+            print(f"Unknown platform {system}")
+        return system, version
+
 def print_system_info():
     print("If you do not understand why the above failures occurred,")
     print("copy and send the *entire* output (all info above and summary")
@@ -982,14 +1008,7 @@ def print_system_info():
     _print_info('os.uname', _platform.uname())
     _print_info('platform', _sys.platform)
     _print_info('platform+', _platform.platform())
-    for pversion in (
-            'linux_distribution',
-            'mac_ver',
-            'win32_ver',
-            ):
-        value = getattr(_platform, pversion)()
-        if value[0]:
-            _print_info(pversion, value)
+    get_system_version(show=True)
     _print_info('prefix', _sys.prefix)
     _print_info('exec_prefix', _sys.exec_prefix)
     _print_info('executable', _sys.executable)
