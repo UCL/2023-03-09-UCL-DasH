@@ -21,23 +21,22 @@ then
     echo "The activation failed for some reason, so I'm bailing out of the install" 
     exit
 fi
-echo "Installing requirements..."
-pip3 install -r ${script_dir}/requirements.txt
 
-# Specific requirements in Mac OS
+echo "Installing requirements..."
+# Specific requirements in Mac OS M1 and M2 chips
 HOST_OS=`uname -s`
 HOST_ARCH=`uname -m`
-if [ "${HOST_OS}" == "Darwin" ]
+if [ "${HOST_OS}" == "Darwin" ] && [ "${HOST_ARCH}" == "arm64" ]
 then
-    if [ "${HOST_ARCH}" == "arm64" ]
-    then
-        echo "Special instructions for Mac M1 and M2 chips"
-        conda install -y -c apple tensorflow-deps
-        python -m pip install tensorflow-macos
-        python -m pip install tensorflow-metal
-        pip3 install -r ${script_dir}/requirements_apple_m.txt
-    fi
+    echo "Special instructions for Mac M1 and M2 chips"
+    conda install -y -c apple tensorflow-deps
+    python -m pip install tensorflow-macos
+    python -m pip install tensorflow-metal
+    pip3 install -r ${script_dir}/requirements_apple_m.txt
+else
+    pip3 install -r ${script_dir}/requirements.txt
 fi
+
 echo "Adding DCM2NIIX"
 conda install -y -c conda-forge dcm2niix
 echo "Adding enviroment to Jupyter..."
