@@ -4,14 +4,11 @@ then
     echo "conda could not be found"
     exit
 fi
-env_name="python_course"
+env_name="python_course_dev"
 script_dir=`dirname ${BASH_SOURCE}`
 # Since we are running this within a script, we need to source 
 # this first, lest we want errors about conda init in this
-echo "Creating environment ${env_name}..."
-# This is a STOP point in case it doesn't so that you aren't 
-# messing with the base env
-echo "Installing requirements..."
+echo "Creating environment ${env_name} and installing required packages..."
 # Specific requirements in Mac OS
 HOST_OS=`uname -s`
 HOST_ARCH=`uname -m`
