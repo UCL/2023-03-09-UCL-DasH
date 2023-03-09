@@ -4,6 +4,8 @@ then
     echo "conda could not be found"
     exit
 fi
+# To ensure conda activate will work
+source ${CONDA_PREFIX}/etc/profile.d/conda.sh
 env_name="python_course_dev"
 script_dir=`dirname ${BASH_SOURCE}`
 # Since we are running this within a script, we need to source 
@@ -20,5 +22,13 @@ else
     conda env create -f ${script_dir}/environment.yml
 fi
 echo "Adding enviroment to Jupyter..."
-python -m ipykernel install --user --name=${env_name}
+conda activate ${env_name}
+if [ "${CONDA_DEFAULT_ENV}" != "${env_name}" ]
+then
+    echo "The activation failed for some reason, so I'm bailing out of the install"
+    echo "This kernel has not been added to Jupyter" 
+    exit
+fi
+python -m ipykernel install --user --name=${env_name} --display-name "Python Course"
+conda deactivate
 echo "Complete!"
