@@ -1,12 +1,9 @@
 name: python_course_dev
-channels:
-  - conda-forge
 dependencies:
   - python=3.9
   - pip
   - dcm2niix
   - distro
-  - anaconda::ipykernel
   - ipython
   - ipympl
   - jupyterlab
