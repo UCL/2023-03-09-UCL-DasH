@@ -6,7 +6,7 @@ then
 fi
 # To ensure conda activate will work
 source ${CONDA_PREFIX}/etc/profile.d/conda.sh
-env_name="python_course_dev"
+env_name="python_course"
 script_dir=`dirname ${BASH_SOURCE}`
 # Since we are running this within a script, we need to source 
 # this first, lest we want errors about conda init in this
