@@ -13,8 +13,8 @@ these scripts:
 ### Download
 If you are using Linux or Mac download:
 * [`swc-installation.sh`](swc-installation.sh)
-* [enviroment.yml](environment.yml) if Linux or Intel Mac
-* [environment_apple_m.yml](environment_apple_m.yml) if you are using a new apple mac M1 or M2
+* [`environment.yml`](environment.yml) if Linux or Intel Mac
+* [`environment_apple_m.yml`](environment_apple_m.yml) if you are using a new apple mac M1 or M2
 
 ### Install
 If you are using **Linux** or **Mac**, find the directory where you downloaded the installation script
@@ -27,7 +27,7 @@ If you are using **Linux** or **Mac**, find the directory where you downloaded t
 ### Download 
 If you are running **Windows**, download:
 * [`swc-installation.ps1`](swc-installation.ps1)
-* [requirements,txt](requirements.txt) 
+* [`requirements,txt`](requirements.txt) 
 
 ### Install
 Click with the right button on the `swc-installation.ps1` that you downloaded`swc-installation.ps1` that you downloaded and select `Run with PowerShell`. This may prompt a question about Change of policies, if so answer <key>Y</key>es.
