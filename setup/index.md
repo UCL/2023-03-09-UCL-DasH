@@ -17,6 +17,14 @@ If you are using Linux or Mac download:
 * [`environment_apple_m.yml`](environment_apple_m.yml) if you are using a new apple mac M1 or M2
 
 ### Install
+If you have a Mac M1 or M2 chip, you first need to tell conda that you want to look for M1 and M2
+versions first instead of Intel chip versions. Open up the `.condarc` file in your home directory
+in a text editor and add the following line to the file:
+    ~~~
+    subdirs: osx-arm64
+    ~~~
+Then save the file and close the text editor.
+
 If you are using **Linux** or **Mac**, find the directory where you downloaded the installation script
     and run the command from the shell.
     ~~~
@@ -33,7 +41,8 @@ If you are running **Windows**, download:
 Click with the right button on the `swc-installation.ps1` that you downloaded`swc-installation.ps1` that you downloaded and select `Run with PowerShell`. This may prompt a question about Change of policies, if so answer <key>Y</key>es.
 
     
-
+## Setting up your environment
+Once you have downloaded and installed, complete the following steps.
 1.  The install script above will create an environment named 'python_course'. Please 
     activate that environment with the following command:
    ~~~
