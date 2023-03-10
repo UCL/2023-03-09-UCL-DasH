@@ -1,4 +1,4 @@
-name: python_course_dev
+name: python_course
 channels:
   - conda-forge
 dependencies:

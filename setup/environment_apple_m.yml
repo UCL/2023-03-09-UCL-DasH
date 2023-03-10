@@ -1,4 +1,4 @@
-name: python_course_dev
+name: python_course
 channels:
   - conda-forge
 dependencies:
@@ -6,7 +6,6 @@ dependencies:
   - pip
   - dcm2niix
   - distro
-  - anaconda::ipykernel
   - ipython
   - ipympl
   - jupyterlab
