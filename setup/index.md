@@ -30,7 +30,8 @@ and run the command from the shell.
 ~~~
 $ bash swc-installation.sh
 ~~~ 
-    
+Proceed to the [Setting up your environment](#setting-up-your-environment) section below.
+
 ## Windows
 ### Download 
 If you are running **Windows**, download:
@@ -39,6 +40,8 @@ If you are running **Windows**, download:
 
 ### Install
 Click with the right button on the `swc-installation.ps1` that you downloaded`swc-installation.ps1` that you downloaded and select `Run with PowerShell`. This may prompt a question about Change of policies, if so answer <key>Y</key>es.
+
+Proceed to the [Setting up your environment](#setting-up-your-environment) section below.
 
     
 ## Setting up your environment
