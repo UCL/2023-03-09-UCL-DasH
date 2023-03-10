@@ -14,7 +14,7 @@ these scripts:
 If you are using Linux or Mac download:
 * [`swc-installation.sh`](swc-installation.sh)
 * [enviroment.yml](environment.yml) if Linux or Intel Mac
-* [environment_apple_m.yml] if you are using a new apple mac M1 or M2
+* [environment_apple_m.yml](environment_apple_m.yml) if you are using a new apple mac M1 or M2
 
 ### Install
 If you are using **Linux** or **Mac**, find the directory where you downloaded the installation script
