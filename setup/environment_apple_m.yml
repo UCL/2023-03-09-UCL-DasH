@@ -21,7 +21,6 @@ dependencies:
   - seaborn
   - stardist
   - statsmodels
-  - apple::tensorflow-deps
   - widgetsnbextension
   - pip:
     - opencv-python
