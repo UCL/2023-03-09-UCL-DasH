@@ -18,7 +18,7 @@ If you are using Linux or Mac download:
 
 ### Install
 If you have a Mac M1 or M2 chip, you first need to tell conda that you want to look for M1 and M2
-versions first instead of Intel chip versions. Open up the `.condarc` file in your home directory
+versions first instead of Intel chip versions. Open up the `.condarc` file located your home directory
 in a text editor and add the following line to the file:
 ~~~
 subdirs: osx-arm64
