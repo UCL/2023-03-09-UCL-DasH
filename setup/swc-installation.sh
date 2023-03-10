@@ -18,6 +18,7 @@ if [ "${HOST_OS}" == "Darwin" ] && [ "${HOST_ARCH}" == "arm64" ]
 then
     echo "Special instructions for Mac M1 and M2 chips"
     conda env create -f ${script_dir}/environment_apple_m.yml
+    conda install -c apple tensorflow-deps
 else
     conda env create -f ${script_dir}/environment.yml
 fi
