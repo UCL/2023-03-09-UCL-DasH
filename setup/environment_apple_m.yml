@@ -1,0 +1,28 @@
+name: python_course
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - dcm2niix
+  - distro
+  - ipython
+  - ipympl
+  - jupyterlab
+  - matplotlib
+  - nibabel
+  - nilearn
+  - numpy
+  - pandas
+  - Pillow
+  - regex
+  - scikit-image
+  - scikit-learn
+  - seaborn
+  - stardist
+  - statsmodels
+  - widgetsnbextension
+  - pip:
+    - opencv-python
+    - tensorflow-macos
+    - tensorflow-metal

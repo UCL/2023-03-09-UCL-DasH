@@ -9,40 +9,61 @@ environment needed for the course and testing your machine to make sure
 you have the software you'll need for your workshop installed.  To use
 these scripts:
 
-1.  If you are using Linux or Mac download [`swc-installation.sh`](swc-installation.sh), if you are
-    using Windows, download [`swc-installation.ps1`](swc-installation.ps1) instead.
+## Linur or Mac 
+### Download
+If you are using Linux or Mac download:
+* [`swc-installation.sh`](swc-installation.sh)
+* [`environment.yml`](environment.yml) if Linux or Intel Mac
+* [`environment_apple_m.yml`](environment_apple_m.yml) if you are using a new apple mac M1 or M2
 
-    Also download the [`requirements.txt`](requirements.txt) file. If you are using a new apple
-    mac M1 or M2, then download [`requirements_apple_m.txt`](requirements_apple_m.txt) too.
+### Install
+If you have a Mac M1 or M2 chip, you first need to tell conda that you want to look for M1 and M2
+versions first instead of Intel chip versions. Open up the `.condarc` file located your home directory
+in a text editor and add the following line to the file:
+~~~
+subdirs: osx-arm64
+~~~
+Then save the file and close the text editor.
 
-2.  If you are running **Windows**, then you can click with the right button on the
-    `swc-installation.ps1` that you downloaded and select `Run with PowerShell`. This may prompt a
-    question about Change of policies, if so answer <key>Y</key>es.
+If you are using **Linux** or **Mac**, find the directory where you downloaded the installation script
+and run the command from the shell.
+~~~
+$ bash swc-installation.sh
+~~~ 
+Proceed to the [Setting up your environment](#setting-up-your-environment) section below.
 
-    If you are using **Linux** or **Mac**, find the directory where you downloaded the installation script
-    and run the command from the shell.
-    ~~~
-    $ bash swc-installation.sh
-    ~~~ 
+## Windows
+### Download 
+If you are running **Windows**, download:
+* [`swc-installation.ps1`](swc-installation.ps1)
+* [`requirements,txt`](requirements.txt) 
 
-3.  This will create an environment named 'python_course'. Please 
+### Install
+Click with the right button on the `swc-installation.ps1` that you downloaded`swc-installation.ps1` that you downloaded and select `Run with PowerShell`. This may prompt a question about Change of policies, if so answer <key>Y</key>es.
+
+Proceed to the [Setting up your environment](#setting-up-your-environment) section below.
+
+    
+## Setting up your environment
+Once you have downloaded and installed, complete the following steps.
+1.  The install script above will create an environment named 'python_course'. Please 
     activate that environment with the following command:
    ~~~
    $ conda activate python_course
    ~~~
 
-4.  Download [swc-installation-test-1.py](swc-installation-test-1.py).
+1.  Download [swc-installation-test-1.py](swc-installation-test-1.py).
 
-5.  Run it from the shell:
+1.  Run it from the shell:
 
     ~~~
     $ python swc-installation-test-1.py
     Passed
     ~~~
 
-6.  Download [swc-installation-test-2.py](swc-installation-test-2.py).
+1.  Download [swc-installation-test-2.py](swc-installation-test-2.py).
 
-7.  Run it from the shell:
+1.  Run it from the shell:
 
     ~~~
     $ python swc-installation-test-2.py
